@@ -25,3 +25,13 @@ Meow Sound effects
 
 Cat Popper is available on Testflight
 
+## Install manually
+
+1. Clone Repo
+2. Open `Smiley Cat/Smiley Cat.xcodeproj`
+3. Change the Team under `Signing and Capabilities`
+4. Select your iPhone
+5. Run
+
+The third party dependencies are managed by Swift Package Manager and should automatically install while you are changing the team.
+
