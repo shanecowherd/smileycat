@@ -16,7 +16,8 @@ final class Cat_PopperTests: XCTestCase {
 
     func testDownloadCatsFromCataas() async throws {
         
-        // Ran into some trouble getting Realm to place nicely with XCTest when it is installed via a SPM.
+        // Ran into some trouble getting Realm to play nicely with XCTest when it is installed via a SPM.
+        // It appears to be a known issue: https://github.com/realm/realm-swift/issues/7992
         // Disabling the test for now.
         
         
