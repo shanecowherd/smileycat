@@ -6,16 +6,50 @@
 //
 
 import SwiftUI
+import AVKit
 
-struct ContentView: View {
+struct ContentView: View {    
+    @State var score = 0
+    @State var timeRemaining = 10
+    @State var hiddenCats = Set<String>()
+    
+    let introPlayer = AVPlayer(url:  Bundle.main.url(forResource: "intro", withExtension: "mov")!)
+    let scorePlayer = AVPlayer(url:  Bundle.main.url(forResource: "score", withExtension: "mov")!)
+    
+    @State var gameState = GameState.intro
+    
+    enum GameState {
+        case intro
+        case running
+        case score
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            Color.black
+                .ignoresSafeArea()
+            if gameState == .intro {
+                IntroView(introPlayer: introPlayer) {
+                    introPlayer.pause()
+                    scorePlayer.pause()
+                    timeRemaining = 10
+                    gameState = .running
+                }
+            }
+            
+            if gameState == .running {
+                RunningStateView(hiddenCats: $hiddenCats, score: $score, timeRemaining: $timeRemaining) {
+                    gameState = .score
+                }
+            }
+
+            if gameState == .score {
+                ScoreView(score: $score, scorePlayer: scorePlayer) {
+                    timeRemaining = 10
+                    gameState = .running
+                }
+            }
         }
-        .padding()
     }
 }
 
