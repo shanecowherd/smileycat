@@ -24,6 +24,7 @@ Meow Sound effects
 ## Distribution
 
 Cat Popper is available on Testflight
+https://testflight.apple.com/join/vvyplIsT
 
 ## Install manually
 
